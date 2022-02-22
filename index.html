@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,31 +8,40 @@
     <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-    <canvas id="canvas" width="100vw" height="100vh">
+    <canvas id="canvas" width="100" height="100">
 
-    </canvas>
     <script>
         canvas.width = document.documentElement.clientWidth;
         canvas.height = document.documentElement.clientHeight - 5;
         let sw = false;
+        let last;
         var ctx = canvas.getContext("2d");
         ctx.fillStyle = 'blue';
-        // ctx.strokeStyle='none';
-        canvas.addEventListener('mousedown',function(){
+        ctx.lineWidth = 10;
+        ctx.lineCap = 'round';
+        canvas.addEventListener('mousedown',function(e){
             sw = true;
+            last = [e.clientX,e.clientY];
         });
         canvas.addEventListener('mousemove',function(e){
             if(sw===true){
-                ctx.beginPath();
-                ctx.arc (e.clientX,e.clientY,10,0,2*Math.PI);
-                // ctx.stroke();
-                ctx.fill();
+                // ctx.beginPath();
+                // ctx.arc (e.clientX,e.clientY,10,0,2*Math.PI);
+                // // ctx.stroke();
+                // ctx.fill();
+                drawLine(last[0],last[1],e.clientX,e.clientY);
+                last = [e.clientX,e.clientY];
             }
         })
         canvas.addEventListener('mouseup',function(){
             sw = false;
         })
-
+        function drawLine(x1,x2,x3,x4){
+            ctx.beginPath();
+            ctx.moveTo(x1,x2);
+            ctx.lineTo(x3,x4);
+            ctx.stroke();
+        }
     </script>
 </body>
 </html>
