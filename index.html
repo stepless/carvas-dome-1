@@ -17,12 +17,16 @@
         let sw = false;
         var ctx = canvas.getContext("2d");
         ctx.fillStyle = 'blue';
+        // ctx.strokeStyle='none';
         canvas.addEventListener('mousedown',function(){
             sw = true;
         });
         canvas.addEventListener('mousemove',function(e){
             if(sw===true){
-                ctx.fillRect (e.clientX-3,e.clientY-3,6,6);
+                ctx.beginPath();
+                ctx.arc (e.clientX,e.clientY,10,0,2*Math.PI);
+                // ctx.stroke();
+                ctx.fill();
             }
         })
         canvas.addEventListener('mouseup',function(){
