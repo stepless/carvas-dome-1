@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>canvas画板</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <canvas id="canvas" width="100vw" height="100vh">
+
+    </canvas>
+    <script>
+        canvas.width = document.documentElement.clientWidth;
+        canvas.height = document.documentElement.clientHeight - 5;
+        let sw = false;
+        var ctx = canvas.getContext("2d");
+        ctx.fillStyle = 'blue';
+        canvas.addEventListener('mousedown',function(){
+            sw = true;
+        });
+        canvas.addEventListener('mousemove',function(e){
+            if(sw===true){
+                ctx.fillRect (e.clientX-3,e.clientY-3,6,6);
+            }
+        })
+        canvas.addEventListener('mouseup',function(){
+            sw = false;
+        })
+
+    </script>
+</body>
+</html>
